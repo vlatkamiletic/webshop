@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROBOOST - Snacks</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styler.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">PROBOOST</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="proteins.html">Proteini</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vitamins.html">Vitamini</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="snacks.html">Snacks</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signInModal">Prijava</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">Košarica</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="text-light">Zdravi snackovi za aktivne ljude</h2>
+        <p class="text-light">Uživajte u ukusnim i hranjivim snackovima savršenim za svaki trenutak – bez grižnje savjesti!</p>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Protein Product 1 -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="pic\Snack1.webp" class="card-img-top product-img" alt="Snickers Hi-Protein Bar 57 g - Mars">
+                    <div class="card-body">
+                        <h5 class="card-title">Proteinska čokoladica</h5>
+                        <p class="card-text">Snickers Hi-Protein Bar 57 g - Mars</p>
+                        <a href="#" class="btn btn-primary">Dodaj u košaricu</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Protein Product 2 -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="pic\Snack2.webp" class="card-img-top product-img" alt="Proteinski chips - GymBeam">
+                    <div class="card-body">
+                        <h5 class="card-title">Proteinski chips - GymBeam</h5>
+                        <p class="card-text">Proteinski chips - GymBeam</p>
+                        <a href="#" class="btn btn-primary">Dodaj u košaricu</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protein Product 3 -->
+            <div class="col-md-4">
+                        <div class="card text-center">
+                            <img src="pic\Snack3.webp" class="card-img-top product-img" alt="Sušeno goveđe meso Beef Jerky - Jack Links">
+                            <div class="card-body">
+                                <h5 class="card-title">Beef Jerky</h5>
+                                <p class="card-text">Sušeno goveđe meso Beef Jerky - Jack Links</p>
+                                <a href="#" class="btn btn-primary">Dodaj u košaricu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLabel">Prijavi se</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Lozinka</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" required>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">Prikaži</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Prijavi se</button>
+                    </form>
+                    <p class="mt-2">Nemaš račun? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" class="text-primary">Registriraj se</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Registriraj se</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ime</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Prezime</label>
+                            <input type="text" class="form-control" id="surname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="regEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="regEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="regPassword" class="form-label">Lozinka</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="regPassword" required>
+                                <button type="button" class="btn btn-outline-secondary" id="toggleRegPassword">Prikaži</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registriraj se</button>
+                    </form>
+                    <p class="mt-2">Već imaš račun? <a href="#" data-bs-toggle="modal" data-bs-target="#signInModal" data-bs-dismiss="modal" class="text-primary">Prijavi se</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Tvoja košarica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tvoja košarica je prazna.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+        
+            if (togglePassword) {
+                togglePassword.addEventListener('mousedown', function () {
+                    passwordInput.type = 'text';
+                });
+        
+                togglePassword.addEventListener('mouseup', function () {
+                    passwordInput.type = 'password';
+                });
+        
+                togglePassword.addEventListener('mouseleave', function () {
+                    passwordInput.type = 'password';
+                });
+            }
+        
+            const toggleRegPassword = document.getElementById('toggleRegPassword');
+            const regPasswordInput = document.getElementById('regPassword');
+        
+            if (toggleRegPassword) {
+                toggleRegPassword.addEventListener('mousedown', function () {
+                    regPasswordInput.type = 'text';
+                });
+        
+                toggleRegPassword.addEventListener('mouseup', function () {
+                    regPasswordInput.type = 'password';
+                });
+        
+                toggleRegPassword.addEventListener('mouseleave', function () {
+                    regPasswordInput.type = 'password';
+                });
+            }
+        });
+        </script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

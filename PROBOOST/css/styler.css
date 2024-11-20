@@ -1,0 +1,22 @@
+body {
+    background-color: #343a40;
+}
+
+.card {
+    margin: 15px 0;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.text-light {
+    color: #ffffff !important;
+}
+
+.product-img {
+    max-width: 100%;      /* Da slike ne prelaze širinu kartice */
+    height: auto;         /* Omogućava automatsko prilagođavanje visine */
+    max-height: 150px;    /* Ograničava visinu slike za ujednačen izgled */
+    object-fit: contain;  /* Zadržava proporcije slike */
+}
