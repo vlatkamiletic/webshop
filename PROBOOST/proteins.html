@@ -45,6 +45,7 @@
 
     <div class="container mt-4">
         <div class="row">
+
             <!-- Protein Product 1 -->
             <div class="col-md-4">
                 <div class="card text-center">
@@ -52,35 +53,61 @@
                     <div class="card-body">
                         <h5 class="card-title">Whey protein</h5>
                         <p class="card-text">100% WHEY PROTEIN PROFESSIONAL</p>
-                        <a href="#" class="btn btn-primary">Dodaj u košaricu</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Protein Product 2 -->
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <img src="pic\Protein2.webp" class="card-img-top product-img" alt="100% CASEIN COMPLEX">
-                    <div class="card-body">
-                        <h5 class="card-title">Kazein protein</h5>
-                        <p class="card-text">100% CASEIN COMPLEX</p>
-                        <a href="#" class="btn btn-primary">Dodaj u košaricu</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Protein Product 3 -->
-           
-            <div class="col-md-4">
-                        <div class="card text-center">
-                            <img src="pic\Protein3.webp" class="card-img-top product-img" alt="100% VEGAN PROTEIN">
-                            <div class="card-body">
-                                <h5 class="card-title">Veganski protein</h5>
-                                <p class="card-text">100% VEGAN PROTEIN</p>
-                                <a href="#" class="btn btn-primary">Dodaj u košaricu</a>
+                        <h5 class="card-text">19.99€</h5>
+                        <div class="d-flex justify-content-center align-items-center mb-3">
+                            <div class="input-group" style="max-width: 110px;">
+                                <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
+                                <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
                             </div>
+                            <button class="btn btn-primary add-to-cart-btn" data-product-name="Whey protein" data-product-price="19.99€">Dodaj u košaricu</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            
+            <!-- Protein Product 2 -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="pic/Protein2.webp" class="card-img-top product-img" alt="100% CASEIN COMPLEX">
+                    <div class="card-body">
+                        <h5 class="card-title">Kazein protein</h5>
+                        <p class="card-text">100% CASEIN COMPLEX</p>
+                        <h5 class="card-text">24.99€</h5>
+                        <div class="d-flex justify-content-center align-items-center mb-3">
+                            <div class="input-group" style="max-width: 110px;">
+                                <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
+                                <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-btn" data-product-name="Kazein protein" data-product-price="24.99€">Dodaj u košaricu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Protein Product 3 -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="pic\Protein3.webp" class="card-img-top product-img" alt="100% VEGAN PROTEIN">
+                    <div class="card-body">
+                        <h5 class="card-title">Veganski protein</h5>
+                        <p class="card-text">100% VEGAN PROTEIN</p>
+                        <h5 class="card-text">23.99€</h5>
+                        <div class="d-flex justify-content-center align-items-center mb-3">
+                            <div class="input-group" style="max-width: 110px;">
+                                <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
+                                <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-btn" data-product-name="Veganski protein" data-product-price="23.99€">Dodaj u košaricu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -160,7 +187,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Tvoja košarica je prazna.</p>
+                    <ul id="cartItemsList">
+                        <li>Tvoja košarica je prazna.</li>
+                    </ul>
+                    <p id="totalPrice">Ukupna cijena: 0.00€</p> <!-- Prikaz ukupne cijene -->
+                </div>
+                    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                    <button type="button" class="btn btn-primary" id="checkoutButton">Nastavi na naplatu</button>
                 </div>
             </div>
         </div>
@@ -168,9 +203,14 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Toggle password visibility for login form
             const togglePassword = document.getElementById('togglePassword');
             const passwordInput = document.getElementById('password');
         
@@ -188,6 +228,7 @@
                 });
             }
         
+            // Toggle password visibility for registration form
             const toggleRegPassword = document.getElementById('toggleRegPassword');
             const regPasswordInput = document.getElementById('regPassword');
         
@@ -205,10 +246,105 @@
                 });
             }
         });
-        </script>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Spinner za povećavanje i smanjivanje količine
+            const increaseBtns = document.querySelectorAll('.btn[id="increase"]');
+            const decreaseBtns = document.querySelectorAll('.btn[id="decrease"]');
+
+            increaseBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const input = e.target.closest('.input-group').querySelector('input');
+                    const currentValue = parseInt(input.value);
+                    const max = parseInt(input.max);
+                    const step = parseInt(input.step);
+                    if (!isNaN(currentValue) && (!max || currentValue + step <= max)) {
+                        input.value = currentValue + step;
+                    }
+                });
+            });
+
+            decreaseBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const input = e.target.closest('.input-group').querySelector('input');
+                    const currentValue = parseInt(input.value);
+                    const min = parseInt(input.min);
+                    const step = parseInt(input.step);
+                    if (!isNaN(currentValue) && (!min || currentValue - step >= min)) {
+                        input.value = currentValue - step;
+                    }
+                });
+            });
+
+            // Košarica
+            let cart = [];
+            let totalPrice = 0;  // Dodajemo varijablu za ukupnu cijenu
+
+            // Dodavanje proizvoda u košaricu
+            const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const productCard = e.target.closest('.card');
+                    const productName = btn.getAttribute('data-product-name');
+                    const productPrice = parseFloat(btn.getAttribute('data-product-price'));
+                    const quantityInput = productCard.querySelector('input[type="number"]');
+                    const quantity = parseInt(quantityInput ? quantityInput.value : 1);
+
+                    addToCart(productName, productPrice, quantity);
+                });
+            });
+
+            function addToCart(productName, productPrice, quantity) {
+                const existingProduct = cart.find(item => item.name === productName);
+
+                if (existingProduct) {
+                    existingProduct.quantity += quantity; // Povećaj količinu ako proizvod već postoji
+                } else {
+                    cart.push({ name: productName, price: productPrice, quantity });
+                }
+
+                updateCartModal();
+            }
+
+            // Ažuriranje sadržaja modalnog prozora košarice
+            function updateCartModal() {
+                const cartItemsList = document.getElementById('cartItemsList');
+                const checkoutButton = document.getElementById('checkoutButton');
+                const totalPriceElement = document.getElementById('totalPrice'); // Prikaz ukupne cijene
+
+                if (cart.length === 0) {
+                    cartItemsList.innerHTML = '<li>Tvoja košarica je prazna.</li>';
+                    totalPriceElement.textContent = 'Ukupna cijena: 0.00€'; // Ako je košarica prazna
+                    checkoutButton.disabled = true; // Onemogući "Nastavi na naplatu" ako je prazno
+                } else {
+                    cartItemsList.innerHTML = '';
+                    totalPrice = 0; // Resetiraj ukupnu cijenu
+
+                    cart.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = `${item.name} - ${item.quantity} x ${item.price.toFixed(2)}€`;
+                        cartItemsList.appendChild(li);
+                        totalPrice += item.price * item.quantity; // Ažuriraj ukupnu cijenu
+                    });
+
+                    totalPriceElement.textContent = `Ukupna cijena: ${totalPrice.toFixed(2)}€`; // Prikaz ukupne cijene
+                    checkoutButton.disabled = false; // Omogući "Nastavi na naplatu" ako ima proizvoda
+                }
+            }
+
+            // Gumb za plaćanje
+            const checkoutButton = document.getElementById('checkoutButton');
+            checkoutButton.addEventListener('click', () => {
+                if (cart.length > 0) {
+                    alert('Plaćanje trenutno nije implementirano. Hvala na kupovini!');
+                } else {
+                    alert('Košarica je prazna.');
+                }
+            });
+        });
+        
+    </script>
 
 </body>
 </html>
