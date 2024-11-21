@@ -20,3 +20,14 @@ body {
     max-height: 150px;    /* Ograničava visinu slike za ujednačen izgled */
     object-fit: contain;  /* Zadržava proporcije slike */
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            text-align: center; 
+        }
+
