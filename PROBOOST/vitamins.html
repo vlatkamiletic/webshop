@@ -38,75 +38,94 @@
         </div>
     </nav>
 
+    <!-- Filtri -->
+    <div class="filters">
+        <div class="filter-price">
+            <label for="priceRange">Cijena:</label>
+            <input type="range" id="priceRange" min="0" max="50" step="1" value="50">
+            <span id="priceValue">0€ - 50€</span>
+        </div>
+        <div class="filter-vegan">
+            <label for="veganFilter"></label>
+            <input type="checkbox" id="veganFilter"> 
+            <span>Veganski proizvodi</span>
+        </div>
+    </div>
+
     <div class="container mt-4">
         <h2 class="text-light">Vitamini za energiju i imunitet</h2>
         <p class="text-light">Osnažite svoje tijelo vrhunskim vitaminima – energija i imunitet na najvišoj razini!</p>
     </div>
 
+    
     <div class="container mt-4">
-        <div class="row">
-            <!-- Vitamin Product 1 -->
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <img src="pic\Vitamin1.webp" class="card-img-top product-img" alt="Vitamin A">
-                    <div class="card-body">
-                        <h5 class="card-title">Vitamin A 5000 IU</h5>
-                        <p class="card-text">Pospješuje zdravlje očiju, kože i imunološkog sustava, ključan za optimalnu funkciju organizma.</p>
-                        <h5 class="card-text">15.99€</h5>
-                        <div class="d-flex justify-content-center align-items-center mb-3">
-                            <div class="input-group" style="max-width: 110px;">
-                                <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
-                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
-                                <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+        <h2 class="text-center text-light">Otkrijte ponudu naših vitamina!</h2>
+
+        <div class="container mt-4">
+            <div class="row">
+
+                <!-- Vitamin Product 1 -->
+                <div class="col-md-4 product" data-price="15.99" data-vegan="false">
+                    <div class="card text-center">
+                        <img src="pic\Vitamin1.webp" class="card-img-top product-img" alt="Vitamin A">
+                        <div class="card-body">
+                            <h5 class="card-title">Vitamin A 5000 IU</h5>
+                            <p class="card-text">Pospješuje zdravlje očiju, kože i imunološkog sustava, ključan za optimalnu funkciju organizma.</p>
+                            <h5 class="card-text">15.99€</h5>
+                            <div class="d-flex justify-content-center align-items-center mb-3">
+                                <div class="input-group" style="max-width: 110px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
+                                    <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+                                </div>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-name="Vitamin A 5000 IU" data-product-price="15.99€">Dodaj u košaricu</button>
                             </div>
-                            <button class="btn btn-primary add-to-cart-btn" data-product-name="Vitamin A 5000 IU" data-product-price="15.99€">Dodaj u košaricu</button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Vitamin Product 2 -->
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <img src="pic\Vitamin2.webp" class="card-img-top product-img" alt="Vitamin B">
-                    <div class="card-body">
-                        <h5 class="card-title">Vitamin B-COMPLEX s vitaminom C</h5>
-                        <p class="card-text">Pomaže u pretvorbi hrane u energiju, smanjuje umor i doprinosi zdravlju živčanog sustava.</p>
-                        <h5 class="card-text">19.99€</h5>
-                        <div class="d-flex justify-content-center align-items-center mb-3">
-                            <div class="input-group" style="max-width: 110px;">
-                                <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
-                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
-                                <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+                <!-- Vitamin Product 2 -->
+                <div class="col-md-4 product" data-price="19.99" data-vegan="false">
+                    <div class="card text-center">
+                        <img src="pic\Vitamin2.webp" class="card-img-top product-img" alt="Vitamin B">
+                        <div class="card-body">
+                            <h5 class="card-title">Vitamin B-COMPLEX s vitaminom C</h5>
+                            <p class="card-text">Pomaže u pretvorbi hrane u energiju, smanjuje umor i doprinosi zdravlju živčanog sustava.</p>
+                            <h5 class="card-text">19.99€</h5>
+                            <div class="d-flex justify-content-center align-items-center mb-3">
+                                <div class="input-group" style="max-width: 110px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
+                                    <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+                                </div>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-name="Vitamin B-COMPLEX s vitaminom C" data-product-price="19.99€">Dodaj u košaricu</button>
                             </div>
-                            <button class="btn btn-primary add-to-cart-btn" data-product-name="Vitamin B-COMPLEX s vitaminom C" data-product-price="19.99€">Dodaj u košaricu</button>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Vitamin Product 3 -->
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <img src="pic\Vitamin3.webp" class="card-img-top product-img" alt="Vitamin C">
-                    <div class="card-body">
-                        <h5 class="card-title">Vitamin C 500 MG</h5>
-                        <p class="card-text">Snažan antioksidans koji podržava imunitet, zdravlje kože i doprinosi zaštiti stanica od oksidativnog stresa.</p>
-                        <h5 class="card-text">17.99€</h5>
-                        <div class="d-flex justify-content-center align-items-center mb-3">
-                            <div class="input-group" style="max-width: 110px;">
-                                <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
-                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
-                                <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+    
+                <!-- Vitamin Product 3 -->
+                <div class="col-md-4 product" data-price="17.99" data-vegan="false">
+                    <div class="card text-center">
+                        <img src="pic\Vitamin3.webp" class="card-img-top product-img" alt="Vitamin C">
+                        <div class="card-body">
+                            <h5 class="card-title">Vitamin C 500 MG</h5>
+                            <p class="card-text">Snažan antioksidans koji podržava imunitet, zdravlje kože i doprinosi zaštiti stanica od oksidativnog stresa.</p>
+                            <h5 class="card-text">17.99€</h5>
+                            <div class="d-flex justify-content-center align-items-center mb-3">
+                                <div class="input-group" style="max-width: 110px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" id="spinnerInput">
+                                    <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+                                </div>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-name="Vitamin C 500 MG" data-product-price="17.99€">Dodaj u košaricu</button>
                             </div>
-                            <button class="btn btn-primary add-to-cart-btn" data-product-name="Vitamin C 500 MG" data-product-price="17.99€">Dodaj u košaricu</button>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
 
     <!-- Sign In Modal -->
     <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
@@ -203,51 +222,82 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
-
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+            const veganFilter = document.getElementById('veganFilter');
+            const products = document.querySelectorAll('.product');
+
+            // Funkcija za filtriranje proizvoda
+            function filterProducts() {
+                const maxPrice = parseFloat(priceRange.value);
+                const isVegan = veganFilter.checked;
+
+                products.forEach(product => {
+                    const productPrice = parseFloat(product.getAttribute('data-price'));
+                    const productIsVegan = product.getAttribute('data-vegan') === 'true';
+
+                    // Provjera uvjeta filtriranja
+                    if (productPrice <= maxPrice && (!isVegan || productIsVegan)) {
+                        product.style.display = 'block';  // Prikazivanje proizvoda
+                    } else {
+                        product.style.display = 'none';  // Skrivanje proizvoda koji ne zadovoljavaju filter
+                    }
+                });
+
+                priceValue.textContent = `0€ - ${maxPrice}€`;  // Ažuriranje prikaza cijene
+            }
+
+            // Pokretanje filtriranja kad god se promijene filteri
+            priceRange.addEventListener('input', filterProducts);
+            veganFilter.addEventListener('change', filterProducts);
+
+            filterProducts();  // Pokretanje filtriranja pri učitavanju stranice
+        });
+
+
         document.addEventListener('DOMContentLoaded', function () {
             // Toggle password visibility for login form
             const togglePassword = document.getElementById('togglePassword');
             const passwordInput = document.getElementById('password');
-        
+    
             if (togglePassword) {
                 togglePassword.addEventListener('mousedown', function () {
                     passwordInput.type = 'text';
                 });
-        
+    
                 togglePassword.addEventListener('mouseup', function () {
                     passwordInput.type = 'password';
                 });
-        
+    
                 togglePassword.addEventListener('mouseleave', function () {
                     passwordInput.type = 'password';
                 });
             }
-        
+    
             // Toggle password visibility for registration form
             const toggleRegPassword = document.getElementById('toggleRegPassword');
             const regPasswordInput = document.getElementById('regPassword');
-        
+    
             if (toggleRegPassword) {
                 toggleRegPassword.addEventListener('mousedown', function () {
                     regPasswordInput.type = 'text';
                 });
-        
+    
                 toggleRegPassword.addEventListener('mouseup', function () {
                     regPasswordInput.type = 'password';
                 });
-        
+    
                 toggleRegPassword.addEventListener('mouseleave', function () {
                     regPasswordInput.type = 'password';
                 });
             }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
+    
             // Spinner za povećavanje i smanjivanje količine
             const increaseBtns = document.querySelectorAll('.btn[id="increase"]');
             const decreaseBtns = document.querySelectorAll('.btn[id="decrease"]');
-
+    
             increaseBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const input = e.target.closest('.input-group').querySelector('input');
@@ -259,7 +309,7 @@
                     }
                 });
             });
-
+    
             decreaseBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const input = e.target.closest('.input-group').querySelector('input');
@@ -271,14 +321,14 @@
                     }
                 });
             });
-
-            // Košarica
-            let cart = [];
-            let totalPrice = 0;  // Dodajemo varijablu za ukupnu cijenu
-
+    
+            // Košarica i session storage
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+            let totalPrice = 0;
+    
             // Dodavanje proizvoda u košaricu
             const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
-
+    
             addToCartBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const productCard = e.target.closest('.card');
@@ -286,49 +336,55 @@
                     const productPrice = parseFloat(btn.getAttribute('data-product-price'));
                     const quantityInput = productCard.querySelector('input[type="number"]');
                     const quantity = parseInt(quantityInput ? quantityInput.value : 1);
-
+    
                     addToCart(productName, productPrice, quantity);
                 });
             });
-
+    
             function addToCart(productName, productPrice, quantity) {
                 const existingProduct = cart.find(item => item.name === productName);
-
+    
                 if (existingProduct) {
                     existingProduct.quantity += quantity; // Povećaj količinu ako proizvod već postoji
                 } else {
                     cart.push({ name: productName, price: productPrice, quantity });
                 }
-
+    
+                saveCartToSessionStorage(); // Spremanje u Session Storage
                 updateCartModal();
             }
-
+    
+            // Funkcija za spremanje košarice u Session Storage
+            function saveCartToSessionStorage() {
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+            }
+    
             // Ažuriranje sadržaja modalnog prozora košarice
             function updateCartModal() {
                 const cartItemsList = document.getElementById('cartItemsList');
                 const checkoutButton = document.getElementById('checkoutButton');
-                const totalPriceElement = document.getElementById('totalPrice'); // Prikaz ukupne cijene
-
+                const totalPriceElement = document.getElementById('totalPrice');
+    
                 if (cart.length === 0) {
                     cartItemsList.innerHTML = '<li>Tvoja košarica je prazna.</li>';
-                    totalPriceElement.textContent = 'Ukupna cijena: 0.00€'; // Ako je košarica prazna
-                    checkoutButton.disabled = true; // Onemogući "Nastavi na naplatu" ako je prazno
+                    totalPriceElement.textContent = 'Ukupna cijena: 0.00€';
+                    checkoutButton.disabled = true;
                 } else {
                     cartItemsList.innerHTML = '';
-                    totalPrice = 0; // Resetiraj ukupnu cijenu
-
+                    totalPrice = 0;
+    
                     cart.forEach(item => {
                         const li = document.createElement('li');
                         li.textContent = `${item.name} - ${item.quantity} x ${item.price.toFixed(2)}€`;
                         cartItemsList.appendChild(li);
-                        totalPrice += item.price * item.quantity; // Ažuriraj ukupnu cijenu
+                        totalPrice += item.price * item.quantity;
                     });
-
-                    totalPriceElement.textContent = `Ukupna cijena: ${totalPrice.toFixed(2)}€`; // Prikaz ukupne cijene
-                    checkoutButton.disabled = false; // Omogući "Nastavi na naplatu" ako ima proizvoda
+    
+                    totalPriceElement.textContent = `Ukupna cijena: ${totalPrice.toFixed(2)}€`;
+                    checkoutButton.disabled = false;
                 }
             }
-
+    
             // Gumb za plaćanje
             const checkoutButton = document.getElementById('checkoutButton');
             checkoutButton.addEventListener('click', () => {
@@ -338,9 +394,12 @@
                     alert('Košarica je prazna.');
                 }
             });
+    
+            // Inicijalno ažuriraj modal košarice nakon učitavanja stranice
+            updateCartModal();
         });
-        
     </script>
+    
 
 </body>
 </html>
