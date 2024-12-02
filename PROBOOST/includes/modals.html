@@ -1,0 +1,92 @@
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Sign In Modal -->
+<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signInModalLabel">Prijavi se</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Lozinka</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" required>
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">Prikaži</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Prijavi se</button>
+                </form>
+                <p class="mt-2">Nemaš račun? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" class="text-primary">Registriraj se</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Registriraj se</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Ime</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Prezime</label>
+                        <input type="text" class="form-control" id="surname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="regEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="regEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="regPassword" class="form-label">Lozinka</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="regPassword" required>
+                            <button type="button" class="btn btn-outline-secondary" id="toggleRegPassword">Prikaži</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registriraj se</button>
+                </form>
+                <p class="mt-2">Već imaš račun? <a href="#" data-bs-toggle="modal" data-bs-target="#signInModal" data-bs-dismiss="modal" class="text-primary">Prijavi se</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cartModalLabel">Tvoja košarica</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul id="cartItemsList">
+                    <li>Tvoja košarica je prazna.</li>
+                </ul>
+                <p id="totalPrice">Ukupna cijena: 0.00€</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                <button type="button" class="btn btn-primary" id="checkoutButton">Nastavi na naplatu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>

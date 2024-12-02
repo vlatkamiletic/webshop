@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROBOOST</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styler.css">
+</head>
+<body>
+    <!-- Navigacijski izbornik -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.php">PROBOOST</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="proteins.php">Proteini</a></li>
+                    <li class="nav-item"><a class="nav-link" href="vitamins.php">Vitamini</a></li>
+                    <li class="nav-item"><a class="nav-link" href="snacks.php">Snacks</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <li class="nav-item"><a class="nav-link" href="logout.php">Odjavi se</a></li>
+                        <li class="nav-item"><a class="nav-link" href="profile.php">Moj profil</a></li>
+                    <?php else: ?>
+                        <!-- Samo jedan gumb za prijavu -->
+                        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signInModal">Prijava</a></li>
+                    <?php endif; ?>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">Košarica</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modalni prozori za prijavu, registraciju i košaricu -->
+    <!-- Prijava -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLabel">Prijavi se</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="login.php" method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Lozinka</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Prijavi se</button>
+                    </form>
+                    <!-- Link za registraciju -->
+                    <p class="mt-3">Nemate račun? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Registrirajte se ovdje</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registracija -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Registriraj se</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="register.php" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ime</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Prezime</label>
+                            <input type="text" class="form-control" id="surname" name="surname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="regEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="regEmail" name="regEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="regPassword" class="form-label">Lozinka</label>
+                            <input type="password" class="form-control" id="regPassword" name="regPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registriraj se</button>
+                    </form>
+                    <!-- Link za prijavu -->
+                    <p class="mt-3">Već imate račun? <a href="#" data-bs-toggle="modal" data-bs-target="#signInModal" data-bs-dismiss="modal">Prijavite se ovdje</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

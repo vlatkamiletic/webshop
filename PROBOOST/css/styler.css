@@ -1,70 +1,169 @@
-body {
-    background-color: #343a40;
+/* Glavni container za cijeli sadržaj */
+main {
+    background-color: #192841; /* Svijetla pozadina za cijeli sadržaj */
+    color: #333; /* Tamna boja teksta za bolju čitljivost */
+    padding: 30px;
 }
 
-.card {
-    margin: 15px 0;
+/* Pozadina za header (dobrodošli u naš webshop) */
+header {
+    background: linear-gradient(135deg, #192630, #4a7388); /* Tamniji gradient za header */
+    padding: 30px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5rem;
 }
 
-.navbar {
-    margin-bottom: 20px;
+/* Naslov u headeru */
+header h1 {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
 }
 
-.text-light {
-    color: #ffffff !important;
+/* Pozadina za filtere */
+.filters {
+    background-color: #2C3E50; /* Tamnija pozadina za filtere */
+    padding: 25px;
+    margin-bottom: 30px;
+    margin-right:65%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color:aliceblue;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    
 }
 
-.navbar {
-    position: fixed;   /* Fiksira navigaciju */
-    top: 0;            /* Postavlja ju na vrh stranice */
-    left: 0;           /* Postavlja je na lijevu stranu */
-    width: 100%;       /* Osigurava da navigacija zauzima cijeli širinu ekrana */
-    z-index: 1000;     /* Postavlja navigaciju iznad drugih elemenata */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Dodaje sjenčanje ispod navigacije */
+/* Filter label */
+.filters label {
+    color: #ecf0f1;
+    font-weight: bold;
 }
 
-/* Dodaj malo paddinga na početak sadržaja kako bi se izbjeglo da sadržaj bude ispod navigacije */
-body {
-    padding-top: 70px; /* Ovisno o visini tvoje navigacije, prilagodi ovu vrijednost */
+/* Cijeli container za proizvode */
+.products-container {
+    display: flex;
+    flex-wrap: wrap; /* Omogućuje prelamanje u novi red */
+    justify-content: space-between; /* Ravnomjerno rasporedi proizvode */
+    gap: 20px; /* Razmak između proizvoda */
+    width: 100%; /* Container zauzima cijelu širinu */
+    max-width: 1400px; /* Postavite maksimalnu širinu za veće ekrane */
+    margin: 0 auto; /* Centrirajte container */
 }
 
+/* Stil za pojedinačne proizvode */
+.product {
+    width: calc(33.33% - 20px); /* 3 proizvoda u redu za velike ekrane */
+    box-sizing: border-box;
+    padding: 10px; /* Razmak unutar proizvoda */
+    border: 1px solid #ccc; /* Granica proizvoda */
+    border-radius: 5px; /* Zaobljeni uglovi */
+    background-color: #fff; /* Bijela pozadina */
+    text-align: center;
+}
 
+/* Hover efekat na proizvode */
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Slike unutar proizvoda */
 .product-img {
-    max-width: 100%;      /* Da slike ne prelaze širinu kartice */
-    height: auto;         /* Omogućava automatsko prilagođavanje visine */
-    max-height: 150px;    /* Ograničava visinu slike za ujednačen izgled */
-    object-fit: contain;  /* Zadržava proporcije slike */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 180px;
+    margin-bottom: 15px;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+/* Naslovi i tekst unutar proizvoda */
+.product h3, .product p, .product h4 {
+    color: #2C3E50;
+    margin: 12px 0;
+}
 
-        input[type="number"] {
-            text-align: center; 
-        }
 
-        .filters {
-            margin: 20px 0;
-            padding: 10px;
-            background-color: #C1E1C1;
-            border-radius: 5px;
-        }
-        
-        .filter-price,
-        .filter-vegan {
-            margin-bottom: 15px;
-        }
-        
-        .products-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .product-card {
-            width: 250px;
-        }
-        
+@media (max-width: 1024px) {
+    .product {
+        width: calc(50% - 20px); /* 2 proizvoda u redu za srednje ekrane */
+    }
+}
+
+@media (max-width: 768px) {
+    .product {
+        width: 100%; /* 1 proizvod u redu za male ekrane */
+    }
+}
+
+
+/* Stilizacija za input spinner */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+.price {
+    font-size: 1.2em;
+    color: #28a745;
+}
+
+.quantity-selector {
+    margin-top: 15px;
+}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+}
+
+.add-to-cart {
+    margin-top: 15px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+
+/* Basic styling for the webshop */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+
+.filter-price {
+    width: 45%;
+}
+
+.filter-vegan {
+    display: flex;
+    align-items: center;
+}
+
+
+
