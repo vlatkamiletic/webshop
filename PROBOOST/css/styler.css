@@ -1,4 +1,4 @@
-/* Glavni container za cijeli sadržaj */
+
 main {
     background-color: #192841; /* Svijetla pozadina za cijeli sadržaj */
     color: #333; /* Tamna boja teksta za bolju čitljivost */
@@ -165,5 +165,89 @@ body {
     align-items: center;
 }
 
+.password-toggle {
+    background: transparent;
+    border: none;
+    color: #fff;
+}
 
+.password-toggle:hover {
+    background: rgba(255,255,255,0.1);
+}
 
+.password-toggle-icon {
+    font-size: 1.2rem;
+}
+
+.modal-content {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* Osnovni stil za navigacijski bar */
+.navbar {
+    background-color: #343a40; /* Boja pozadine navbar-a (tamno siva) */
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff; /* Boja teksta na logo */
+}
+
+/* Osigurava da stavke u navbaru budu poravnate prema lijevoj strani */
+.navbar-nav {
+    display: flex; /* Koristi flexbox za poravnavanje stavki */
+    justify-content: flex-start; /* Stavke će biti poravnate lijevo */
+    align-items: center; /* Poravnava stavke vertikalno u sredinu */
+    margin: 0; /* Uklanja margine oko nav item-a */
+}
+
+/* Osigurava da razmak između stavki u navbaru bude ujednačen */
+.nav-item {
+    margin-right: 20px; /* Razmak između stavki */
+}
+
+/* Podesite boje i hover efekte za linkove */
+.nav-link {
+    color: #ffffff; /* Boja teksta */
+    font-size: 1rem; /* Veličina fonta */
+    padding: 8px 15px; /* Unutarnji razmak za bolji izgled */
+}
+
+.nav-link:hover {
+    color: #f8f9fa; /* Promjena boje na hover */
+    background-color: #495057; /* Pozadina pri hoveru */
+}
+
+/* Razmak između lijevog i desnog dijela navigacije */
+.navbar-nav.me-auto {
+    margin-right: auto; /* Lijeva navigacija ide na lijevu stranu */
+}
+
+/* Desni gumbi će biti poravnati desno */
+.navbar-nav.ms-auto {
+    margin-left: auto; /* Desna navigacija ide na desnu stranu */
+}
+
+/* Pobrinite se da širina container-a bude 100% */
+.navbar .container {
+    width: 100%;
+}
+
+/* Stiliziranje gumba u navigaciji */
+.navbar-toggler {
+    border: none; /* Uklanja okvir oko gumba za toggliranje */
+}
+
+.navbar-toggler-icon {
+    background-color: #ffffff; /* Bijela ikona za hamburger meni */
+}

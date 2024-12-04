@@ -1,13 +1,14 @@
 <?php
-$servername = "localhost";
-$username = "root"; // Ili korisničko ime za vašu bazu
-$password = ""; // Lozinka za vašu bazu
-$dbname = "webshop"; // Naziv vaše baze podataka
+$host = "localhost";
+$dbname = "webshop";
+$username = "root";
+$password = "";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Poveži se na bazu podataka
+$conn = new mysqli($host, $username, $password, $dbname);
 
-// Provjerite povezanost
+// Provjeri povezanost
 if ($conn->connect_error) {
-    die("Ne mogu se spojiti na bazu: " . $conn->connect_error);
+    die("Greška pri povezivanju na bazu: " . $conn->connect_error);
 }
 ?>

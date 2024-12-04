@@ -1,6 +1,5 @@
 <?php
 session_start();
-session_destroy(); // Uništite sesiju
-header('Location: index.php'); // Redirektirajte korisnika na početnu stranicu
+session_destroy();
+header('Location: index.php'); // Preusmjerenje na početnu stranicu
 exit();
-?>

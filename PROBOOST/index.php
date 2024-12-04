@@ -1,18 +1,21 @@
-<?php
+<?php 
 session_start();
-include 'db.php';
-include 'base.html';
+include 'db.php'; // Povezivanje s bazom koristeći MySQLi
+include 'base.php';
 
-// Dohvati sve proizvode iz baze
+$page_title = "Dobrodošli u naš webshop!";
+
+// Dohvati sve proizvode iz baze koristeći MySQLi
 $sql = "SELECT * FROM products";
-$result = $conn->query($sql);
+$result = $conn->query($sql); // Koristi MySQLi query
 
-// Provjeri da li je SQL upit uspio
+// Provjera rezultata
 if (!$result) {
     die("Greška u upitu: " . $conn->error);
 }
 
-$page_title = "Dobrodošli u naš webshop!";
+// Dohvati sve proizvode kao asocijativni niz
+$products = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -23,13 +26,24 @@ $page_title = "Dobrodošli u naš webshop!";
     <title>Webshop - Proteini</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styler.css">
-
 </head>
 <body>
-    <header>
-        <h1>Najbolja ponuda proteina, vitamina i snackova!</h1>
-    </header>
+    
     <main>
+        <!-- Display success or error message -->
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="alert alert-success" id="success-message">
+                <?= htmlspecialchars($_SESSION['success_message']) ?>
+            </div>
+            <?php unset($_SESSION['success_message']); // Clear the message after displaying it ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <div class="alert alert-danger" id="error-message">
+                <?= htmlspecialchars($_SESSION['error_message']) ?>
+            </div>
+            <?php unset($_SESSION['error_message']); // Clear the message after displaying it ?>
+        <?php endif; ?>
 
         <!-- Filtri -->
         <div class="filters">
@@ -47,43 +61,52 @@ $page_title = "Dobrodošli u naš webshop!";
 
         <!-- Proizvodi -->
         <div class="products-container">
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-
-                    <div class="product" data-id="<?= $row['id'] ?>" data-price="<?= $row['price'] ?>" data-vegan="<?= $row['is_vegan'] ?>">
-                        <img src="<?= $row['image_url'] ?>" alt="<?= $row['name'] ?>" class="product-img">
-                        <h3><?= $row['name'] ?></h3>
-                        <p><?= $row['description'] ?></p>
-                        <h4 class="price"><?= $row['price'] ?>€</h4>
-
-                        <!-- Spinner za količinu -->
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $product): ?>
+                    <div class="product" data-id="<?= $product['id'] ?>" data-price="<?= $product['price'] ?>" data-vegan="<?= $product['is_vegan'] ?>">
+                        <img src="<?= htmlspecialchars($product['image_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="product-img">
+                        <h3><?= htmlspecialchars($product['name']) ?></h3>
+                        <p><?= htmlspecialchars($product['description']) ?></p>
+                        <h4 class="price"><?= $product['price'] ?>€</h4>
                         <div class="quantity-selector">
-                            <label for="quantity_<?= $row['id'] ?>">Količina:</label>
+                            <label for="quantity_<?= $product['id'] ?>">Količina:</label>
                             <div class="input-group">
-                                <button type="button" class="btn btn-outline-secondary decrease" id="decrease_<?= $row['id'] ?>">-</button>
-                                <input type="number" class="form-control quantity-input" id="quantity_<?= $row['id'] ?>" min="1" value="1" step="1" max="100">
-                                <button type="button" class="btn btn-outline-secondary increase" id="increase_<?= $row['id'] ?>">+</button>
+                                <input type="number" class="form-control quantity-input" id="quantity_<?= $product['id'] ?>" min="1" value="1" step="1" max="10">
                             </div>
                         </div>
-                        <button class="add-to-cart" data-id="<?= $row['id'] ?>">Dodaj u košaricu</button>
+                        <button class="add-to-cart" data-id="<?= $product['id'] ?>">Dodaj u košaricu</button>
                     </div>
-
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             <?php else: ?>
                 <p>Nema proizvoda za prikaz.</p>
             <?php endif; ?>
         </div>
     </main>
 
-    <!-- Modali -->
-    <?php include 'includes/modals.html'; ?>
 
-    <script src="js/main.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script> 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+
+    <script>
+    // Hide success message after 3 seconds
+    setTimeout(function() {
+        var successMessage = document.getElementById('success-message');
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+    }, 3000); // 3000 milliseconds = 3 seconds
+
+    // Hide error message after 3 seconds (optional)
+    setTimeout(function() {
+        var errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
+            errorMessage.style.display = 'none';
+        }
+    }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+
 </body>
 </html>
-
-<?php
-// Zatvori konekciju
-$conn->close();
-?>
