@@ -17,9 +17,18 @@ if (session_status() === PHP_SESSION_NONE) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="products.php?category=proteini">Proteini</a></li>
-                <li class="nav-item"><a class="nav-link" href="products.php?category=vitamini">Vitamini</a></li>
-                <li class="nav-item"><a class="nav-link" href="products.php?category=snacks">Snacks</a></li>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link <?php echo (isset($_GET['category']) && $_GET['category'] == 'proteini') ? 'active' : ''; ?>" href="products.php?category=proteini">Proteini</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo (isset($_GET['category']) && $_GET['category'] == 'vitamini') ? 'active' : ''; ?>" href="products.php?category=vitamini">Vitamini</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo (isset($_GET['category']) && $_GET['category'] == 'snacks') ? 'active' : ''; ?>" href="products.php?category=snacks">Snacks</a>
+                </li>
+            </ul>
+
             </ul>
             <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['user_id'])): ?>

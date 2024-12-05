@@ -28,34 +28,42 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
         
-    
-        // Product Filtering
+        //filtering
         const veganFilterCheckbox = document.getElementById('veganFilter');
         const priceRange = document.getElementById('priceRange');
         const priceValue = document.getElementById('priceValue');
         const productsContainer = document.querySelector('.products-container');
-    
+
         function filterProducts() {
             if (!productsContainer) return;
-    
+
             const veganOnly = veganFilterCheckbox?.checked || false;
-            const maxPrice = priceRange?.value || Infinity;
-    
+            const maxPrice = parseFloat(priceRange?.value || Infinity);
+
             document.querySelectorAll('.product').forEach(product => {
                 const price = parseFloat(product.dataset.price);
                 const isVegan = product.dataset.vegan === '1';
-    
-                product.style.display =
-                    ((veganOnly && isVegan) || !veganOnly) && price <= maxPrice
-                        ? 'block'
-                        : 'none';
+
+                
+
+                // Prikaz ili sakrivanje proizvoda na temelju filtera
+                if (((veganOnly && isVegan) || !veganOnly) && price <= maxPrice) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+
+                // Ponovno osiguranje stilova za slike
+                const productImage = product.querySelector('img');
+                if (productImage) {
+                    productImage.style.width = '100%';
+                    productImage.style.height = '200px';
+                    productImage.style.objectFit = 'cover';
+                }
             });
-    
-            productsContainer.style.display = 'none';
-            productsContainer.offsetHeight; // Force reflow
-            productsContainer.style.display = 'flex';
         }
-    
+
+        // Ažuriranje prikaza cijene i pokretanje filtriranja
         if (priceRange) {
             priceRange.addEventListener('input', function () {
                 if (priceValue) {
@@ -64,11 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 filterProducts();
             });
         }
-    
+
+        // Aktiviranje filtriranja na promjenu veganske opcije
         if (veganFilterCheckbox) {
             veganFilterCheckbox.addEventListener('change', filterProducts);
         }
-
 
 
         document.getElementById('openCartButton').addEventListener('click', function() {
@@ -94,127 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
             
             // Ukloni padding sa desne strane nakon zatvaranja modala
             document.body.style.paddingRight = '';  // Vraća padding na normalno
-        });
-        
-        
-            
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartItemsList = document.getElementById('cartItemsList');
-        const totalPriceElement = document.getElementById('totalPrice');
-        const checkoutButton = document.getElementById('checkoutButton');
-
-        // Ažuriranje košarice u modal
-        function updateCartModal() {
-            if (cart.length === 0) {
-                if (cartItemsList) {
-                    cartItemsList.innerHTML = '<li>Košarica je prazna.</li>';
-                }
-                if (totalPriceElement) {
-                    totalPriceElement.textContent = 'Ukupna cijena: 0.00€';
-                }
-                if (checkoutButton) {
-                    checkoutButton.disabled = true;
-                }
-            } else {
-                if (cartItemsList) {
-                    cartItemsList.innerHTML = '';
-                    let totalPrice = 0;
-
-                    cart.forEach((item, index) => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `
-                            Proizvod ${item.id} - ${item.quantity} x ${item.price.toFixed(2)}€
-                            <button class="remove-from-cart" data-index="${index}">Ukloni</button>
-                        `;
-                        cartItemsList.appendChild(li);
-                        totalPrice += item.price * item.quantity;
-                    });
-
-                    if (totalPriceElement) {
-                        totalPriceElement.textContent = `Ukupna cijena: ${totalPrice.toFixed(2)}€`;
-                    }
-                    if (checkoutButton) {
-                        checkoutButton.disabled = false;
-                    }
-                }
-            }
-        }
-
-        // Dodavanje proizvoda u košaricu
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function () {
-                const productId = this.getAttribute('data-id');
-                const quantityInput = document.getElementById(`quantity_${productId}`);
-                const quantity = parseInt(quantityInput.value);
-        
-                if (quantity && quantity >= 1) {
-                    addToCart(productId, quantity); // Pozivamo funkciju za dodavanje u košaricu
-                }
-            });
-        });
-        
-        // Funkcija za dodavanje proizvoda u košaricu
-        function addToCart(productId, quantity) {
-            const productElement = document.querySelector(`.product[data-id="${productId}"]`);
-            if (!productElement) return;
-        
-            const productPrice = parseFloat(productElement.dataset.price); // Uzima cijenu proizvoda
-            const existingProductIndex = cart.findIndex(item => item.id === productId); // Provjerava postoji li proizvod u košarici
-        
-            // Ako proizvod već postoji u košarici, povećava količinu
-            if (existingProductIndex >= 0) {
-                cart[existingProductIndex].quantity += quantity;
-            } else {
-                // Ako proizvod ne postoji, dodaje ga u košaricu
-                cart.push({ id: productId, quantity, price: productPrice });
-            }
-        
-            // Pohranjuje ažuriranu košaricu u localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-        
-            // Ažurira prikaz košarice u modalu
-            updateCartModal();
-        }
-        
-
-        // Event listener za minus i plus dugmadi za količinu
-        document.querySelectorAll('.decrease').forEach(button => {
-            button.addEventListener('click', function () {
-                const productId = this.id.replace('decrease_', '');
-                const quantityInput = document.getElementById(`quantity_${productId}`);
-                let quantity = parseInt(quantityInput.value);
-                
-                if (quantity > 1) {
-                    quantity--;
-                    quantityInput.value = quantity;
-                }
-            });
-        });
-
-        document.querySelectorAll('.increase').forEach(button => {
-            button.addEventListener('click', function () {
-                const productId = this.id.replace('increase_', '');
-                const quantityInput = document.getElementById(`quantity_${productId}`);
-                let quantity = parseInt(quantityInput.value);
-
-                if (quantity < 10) {
-                    quantity++;
-                    quantityInput.value = quantity;
-                }
-            });
-        });
-
-        // Inicijalizacija košarice prilikom učitavanja stranice
-        updateCartModal();
-
-        // Event listener za uklanjanje proizvoda iz košarice
-        document.querySelectorAll('.remove-from-cart').forEach(button => {
-            button.addEventListener('click', function () {
-                const index = parseInt(this.getAttribute('data-index'));
-                cart.splice(index, 1); // Ukloni proizvod iz košarice
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartModal(); // Ažuriraj modal nakon uklanjanja proizvoda
-            });
         });
 
     
@@ -301,11 +188,63 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     
+
+
+
+        // Cart functionality
+        // Function to update the cart modal
+        function updateCartModal() {
+            const cartItemsList = $('#cartItemsList');
+            cartItemsList.empty();
+            let totalPrice = 0;
+
+            if (cartItems.length === 0) {
+                cartItemsList.append('<li>Vaša košarica je trenutno prazna.</li>');
+            } else {
+                cartItems.forEach(item => {
+                    cartItemsList.append(`<li>${item.name} - ${item.price.toFixed(2)} €</li>`);
+                    totalPrice += item.price;
+                });
+            }
+
+            $('#totalPrice').text(`Ukupna cijena: ${totalPrice.toFixed(2)} €`);
+        }
+
+        $(document).ready(function() {
+            // Update the cart modal when it is shown
+            $('#cartModal').on('show.bs.modal', function () {
+                updateCartModal();
+            });
+
+            $('#checkoutButton').click(function() {
+                // Send the cart items to the server for processing
+                $.ajax({
+                    url: 'process_order.php',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(cartItems),
+                    success: function(response) {
+                        const result = JSON.parse(response);
+                        alert(result.message);
+                        if (result.status === 'success') {
+                            // Optionally clear the cart or redirect
+                            cartItems.length = 0; // Clear the cart
+                            $('#cartModal').modal('hide'); // Hide the modal
+                        }
+                    },
+                    error: function() {
+                        alert('Došlo je do greške prilikom obrade narudžbe.');
+                    }
+                });
+            });
+        });
+            
         
         
-    
-        // Initialize
-        updateCartModal();
+   
+
+        
+
         filterProducts();
         
     });

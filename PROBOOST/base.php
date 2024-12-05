@@ -17,6 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- Navigacijski izbornik -->
     <?php include 'navbar.php'; ?>
+    
 
     <!-- Sign In Modal -->
     <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
@@ -115,7 +116,8 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </div>
 
-    <!-- Your other content goes here -->
+
+
 
     
     <script src="js/jquery.min.js"></script>

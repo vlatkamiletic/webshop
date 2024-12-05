@@ -23,9 +23,10 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webshop - Proteini</title>
+    <title>Webshop</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styler.css">
+
 </head>
 <body>
     
@@ -46,6 +47,8 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
         <?php endif; ?>
 
         <!-- Filtri -->
+
+
         <div class="filters">
             <div class="filter-price">
                 <label for="priceRange">Cijena:</label>
@@ -74,13 +77,16 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                                 <input type="number" class="form-control quantity-input" id="quantity_<?= $product['id'] ?>" min="1" value="1" step="1" max="10">
                             </div>
                         </div>
-                        <button class="add-to-cart" data-id="<?= $product['id'] ?>">Dodaj u košaricu</button>
+                        
+                        <button class="add-to-cart" data-id="<?= $product['id'] ?>" data-name="<?= htmlspecialchars($product['name']) ?>" data-price="<?= $product['price'] ?>">Dodaj u košaricu</button>
+
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p>Nema proizvoda za prikaz.</p>
             <?php endif; ?>
         </div>
+
     </main>
 
 
@@ -107,6 +113,101 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
         }
     }, 3000); // 3000 milliseconds = 3 seconds
     </script>
+
+
+    <script>
+        $(document).ready(function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Dodavanje proizvoda u košaricu
+            $('.add-to-cart').click(function() {
+                const productId = $(this).data('id');
+                const productName = $(this).data('name');
+                const productPrice = parseFloat($(this).data('price'));
+                const quantity = parseInt($(`#quantity_${productId}`).val());
+
+                // Provjeri ako proizvod već postoji u košarici
+                const cartItem = cart.find(item => item.id === productId);
+                if (cartItem) {
+                    cartItem.quantity += quantity;  // Ako postoji, poveća količinu
+                } else {
+                    cart.push({ id: productId, name: productName, price: productPrice, quantity: quantity });
+                }
+                
+                // Spremi košaricu u localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Ažuriraj modal
+                updateCart();
+            });
+
+            // Ažuriranje košarice (prikaz u modalu)
+            function updateCart() {
+                const cartItemsList = $('#cartItemsList');
+                const totalPriceElement = $('#totalPrice');
+                cartItemsList.empty();
+                let totalPrice = 0;
+
+                if (cart.length === 0) {
+                    cartItemsList.append('<li>Vaša košarica je trenutno prazna.</li>');
+                } else {
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        totalPrice += itemTotal;
+
+                        // Dodavanje gumba za promjenu količine
+                        cartItemsList.append(`
+                            <li>
+                                ${item.name} 
+                                - <button class="decrease-quantity" data-id="${item.id}">-</button>
+                                <span id="quantity_${item.id}">${item.quantity}</span>
+                                <button class="increase-quantity" data-id="${item.id}">+</button> 
+                                x ${item.price}€ = ${itemTotal.toFixed(2)}€
+                            </li>
+                        `);
+                    });
+                }
+
+                totalPriceElement.text(`Ukupna cijena: ${totalPrice.toFixed(2)} €`);
+            }
+
+            // Povećaj količinu proizvoda
+            $(document).on('click', '.increase-quantity', function() {
+                const productId = $(this).data('id');
+                const cartItem = cart.find(item => item.id === productId);
+                if (cartItem) {
+                    cartItem.quantity += 1;  // Povećaj količinu za 1
+                    $('#quantity_' + productId).text(cartItem.quantity); // Ažuriraj količinu na ekranu
+                    updateCart();  // Ažuriraj cijenu
+                    localStorage.setItem('cart', JSON.stringify(cart));  // Spremi u localStorage
+                }
+            });
+
+            // Smanji količinu proizvoda
+            $(document).on('click', '.decrease-quantity', function () {
+                const productId = $(this).data('id'); // Dohvati ID proizvoda
+                const cartItemIndex = cart.findIndex(item => item.id === productId); // Nađi indeks proizvoda u košarici
+
+                if (cartItemIndex !== -1) { // Ako proizvod postoji u košarici
+                    const cartItem = cart[cartItemIndex];
+                    
+                    if (cartItem.quantity > 1) {
+                        cartItem.quantity -= 1; // Smanji količinu za 1
+                    } else {
+                        cart.splice(cartItemIndex, 1); // Ukloni proizvod iz košarice
+                    }
+
+                    updateCart(); // Ažuriraj prikaz košarice
+                    localStorage.setItem('cart', JSON.stringify(cart)); // Spremi ažuriranu košaricu u localStorage
+                }
+            });
+
+
+            // Ažuriraj košaricu prilikom učitavanja stranice
+            updateCart();
+        });
+        </script>
+
 
 </body>
 </html>
