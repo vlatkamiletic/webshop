@@ -142,22 +142,22 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- Login in check -->
     <script>
-    document.getElementById('checkoutButton').addEventListener('click', function() {
-    fetch('check_login.php') // Path to your check_login.php file
-        .then(response => response.json())
-        .then(data => {
-            const messageDiv = document.getElementById('messageDiv');
-            messageDiv.innerText = ''; // Clear previous messages
+        document.getElementById('checkoutButton').addEventListener('click', function() {
+        fetch('check_login.php') // Path to your check_login.php file
+            .then(response => response.json())
+            .then(data => {
+                const messageDiv = document.getElementById('messageDiv');
+                messageDiv.innerText = ''; // Clear previous messages
 
-            if (data.loggedIn) {
-                window.location.href = 'checkout.php'; // Redirect to checkout page
-            } else {
-                // User is not logged in, show a message
-                messageDiv.innerText = 'Morate se prijaviti da biste nastavili na izradu narudžbu.';
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+                if (data.loggedIn) {
+                    window.location.href = 'checkout.php'; // Redirect to checkout page
+                } else {
+                    // User is not logged in, show a message
+                    messageDiv.innerText = 'Morate se prijaviti da biste nastavili na naplatu.';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
     </script>
 
 

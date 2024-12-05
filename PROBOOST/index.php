@@ -47,8 +47,6 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
         <?php endif; ?>
 
         <!-- Filtri -->
-
-
         <div class="filters">
             <div class="filter-price">
                 <label for="priceRange">Cijena:</label>
@@ -62,9 +60,10 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
+
         <!-- Proizvodi -->
         <div class="products-container">
-            <?php if (!empty($products)): ?>
+        <?php if (!empty($products)): ?>
                 <?php foreach ($products as $product): ?>
                     <div class="product" data-id="<?= $product['id'] ?>" data-price="<?= $product['price'] ?>" data-vegan="<?= $product['is_vegan'] ?>">
                         <img src="<?= htmlspecialchars($product['image_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="product-img">
@@ -94,6 +93,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
 
 
     <script>
