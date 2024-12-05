@@ -110,15 +110,17 @@ if (session_status() === PHP_SESSION_NONE) {
                         <li>Vaša košarica je trenutno prazna.</li>
                     </ul>
                     <p id="totalPrice">Ukupna cijena: 0.00 €</p>
+                    <div id="messageDiv" style="color: blue;"></div> <!-- Message-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-                    <button type="button" class="btn btn-primary" id="checkoutButton">Nastavi na naplatu</button>
+                    <button type="button" class="btn btn-primary" id="checkoutButton">Izradi narudžbu</button>
                 </div>
             </div>
         </div>
     </div>
-
+    
+    <!-- Password togle -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.toggle-password').forEach(button => {
@@ -136,6 +138,26 @@ if (session_status() === PHP_SESSION_NONE) {
                 });
             });
         });
+    </script>
+
+    <!-- Login in check -->
+    <script>
+    document.getElementById('checkoutButton').addEventListener('click', function() {
+    fetch('check_login.php') // Path to your check_login.php file
+        .then(response => response.json())
+        .then(data => {
+            const messageDiv = document.getElementById('messageDiv');
+            messageDiv.innerText = ''; // Clear previous messages
+
+            if (data.loggedIn) {
+                window.location.href = 'checkout.php'; // Redirect to checkout page
+            } else {
+                // User is not logged in, show a message
+                messageDiv.innerText = 'Morate se prijaviti da biste nastavili na izradu narudžbu.';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
     </script>
 
 
