@@ -18,15 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // Prikaz/skrivanje lozinke
-        document.querySelectorAll('.toggle-password').forEach(button => {
-            button.addEventListener('click', function() {
-                const passwordField = document.querySelector(this.getAttribute('data-target'));
-                const type = passwordField.type === 'password' ? 'text' : 'password';
-                passwordField.type = type;
-                this.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
-            });
-        });
         
         //filtering
         const veganFilterCheckbox = document.getElementById('veganFilter');
@@ -187,61 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
             }
         });
-    
-
-
-
-        // Cart functionality
-        // Function to update the cart modal
-        function updateCartModal() {
-            const cartItemsList = $('#cartItemsList');
-            cartItemsList.empty();
-            let totalPrice = 0;
-
-            if (cartItems.length === 0) {
-                cartItemsList.append('<li>Vaša košarica je trenutno prazna.</li>');
-            } else {
-                cartItems.forEach(item => {
-                    cartItemsList.append(`<li>${item.name} - ${item.price.toFixed(2)} €</li>`);
-                    totalPrice += item.price;
-                });
-            }
-
-            $('#totalPrice').text(`Ukupna cijena: ${totalPrice.toFixed(2)} €`);
-        }
-
-        $(document).ready(function() {
-            // Update the cart modal when it is shown
-            $('#cartModal').on('show.bs.modal', function () {
-                updateCartModal();
-            });
-
-            $('#checkoutButton').click(function() {
-                // Send the cart items to the server for processing
-                $.ajax({
-                    url: 'process_order.php',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(cartItems),
-                    success: function(response) {
-                        const result = JSON.parse(response);
-                        alert(result.message);
-                        if (result.status === 'success') {
-                            // Optionally clear the cart or redirect
-                            cartItems.length = 0; // Clear the cart
-                            $('#cartModal').modal('hide'); // Hide the modal
-                        }
-                    },
-                    error: function() {
-                        alert('Došlo je do greške prilikom obrade narudžbe.');
-                    }
-                });
-            });
-        });
-            
-        
-        
-   
 
         
 
