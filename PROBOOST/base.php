@@ -15,10 +15,8 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 <body>
 
-    <!-- Navigacijski izbornik -->
     <?php include 'navbar.php'; ?>
     
-
     <!-- Sign In Modal -->
     <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -142,15 +140,16 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- Login in check -->
     <script>
+       
         document.getElementById('checkoutButton').addEventListener('click', function() {
-        fetch('check_login.php') // Path to your check_login.php file
+        fetch('check_login.php') 
             .then(response => response.json())
             .then(data => {
                 const messageDiv = document.getElementById('messageDiv');
                 messageDiv.innerText = ''; // Clear previous messages
 
                 if (data.loggedIn) {
-                    window.location.href = 'checkout.php'; // Redirect to checkout page
+                    messageDiv.innerText = 'Plaćanje nije još integrirano'; 
                 } else {
                     // User is not logged in, show a message
                     messageDiv.innerText = 'Morate se prijaviti da biste nastavili na naplatu.';
@@ -158,10 +157,8 @@ if (session_status() === PHP_SESSION_NONE) {
             })
             .catch(error => console.error('Error:', error));
         });
+
     </script>
-
-
-
     
     <script src="js/jquery.min.js"></script>
     <script src="js/main.js"></script>

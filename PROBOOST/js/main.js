@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (nameInput) nameInput.focus();
             });
         }
-
-
         
         //filtering
         const veganFilterCheckbox = document.getElementById('veganFilter');
@@ -75,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var myModal = new bootstrap.Modal(document.getElementById('cartModal'), {
                 keyboard: false // Onemogući izlaz pomoću tipke ESC
             });
-            myModal.show(); // Otvori modal
+            myModal.show();
         });
 
         document.getElementById('cartModal').addEventListener('hidden.bs.modal', function () {
@@ -89,10 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.remove('modal-open');
             
             // Omogući ponovno skrolanje
-            document.body.style.overflow = '';  // Vraća normalno skrolanje
+            document.body.style.overflow = ''; 
             
             // Ukloni padding sa desne strane nakon zatvaranja modala
-            document.body.style.paddingRight = '';  // Vraća padding na normalno
+            document.body.style.paddingRight = '';
         });
 
     
@@ -126,8 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     const data = await response.text();
                     if (data === "success") {
                         const signInModal = new bootstrap.Modal(document.getElementById('signInModal'));
-                        signInModal.hide(); // Zatvori modal
-                        window.location.reload(); // Osvježi stranicu nakon prijave
+                        signInModal.hide();
+                        window.location.reload(); 
                     } else {
                         alert(data);
                     }
@@ -153,10 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (data.success) {
                         alert(data.message);
                         const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
-                        registerModal.hide(); // Zatvori modal
-                        updateNavbar(); // Ažuriraj navbar
+                        registerModal.hide(); 
+                        updateNavbar(); 
                     } else {
-                        alert(data.message); // Prikaži poruku o grešci
+                        alert(data.message);
                     }
                 } catch (error) {
                     console.error("Greška pri registraciji:", error);
@@ -170,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 fetch("logout.php", { method: "GET" })
                     .then(() => {
                         updateNavbar(); // Ažuriraj navigaciju nakon odjave
-                        window.location.reload(); // Osvježi stranicu
+                        window.location.reload();
                     })
                     .catch(error => {
                         console.error("Greška pri odjavi:", error);
@@ -178,8 +176,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
             }
         });
-
-        
 
         filterProducts();
         

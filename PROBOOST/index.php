@@ -1,13 +1,13 @@
 <?php 
 session_start();
-include 'db.php'; // Povezivanje s bazom koristeći MySQLi
+include 'db.php'; 
 include 'base.php';
 
 $page_title = "Dobrodošli u naš webshop!";
 
-// Dohvati sve proizvode iz baze koristeći MySQLi
+// Dohvati sve proizvode 
 $sql = "SELECT * FROM products";
-$result = $conn->query($sql); // Koristi MySQLi query
+$result = $conn->query($sql); 
 
 // Provjera rezultata
 if (!$result) {
@@ -24,7 +24,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webshop</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styler.css">
 
 </head>
@@ -88,30 +88,27 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
 
     </main>
 
-
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
-
-
     <script>
-    // Hide success message after 3 seconds
+    // Hide success message 
     setTimeout(function() {
         var successMessage = document.getElementById('success-message');
         if (successMessage) {
             successMessage.style.display = 'none';
         }
-    }, 3000); // 3000 milliseconds = 3 seconds
+    }, 3000); 
 
-    // Hide error message after 3 seconds (optional)
+    // Hide error message
     setTimeout(function() {
         var errorMessage = document.getElementById('error-message');
         if (errorMessage) {
             errorMessage.style.display = 'none';
         }
-    }, 3000); // 3000 milliseconds = 3 seconds
+    }, 3000); 
     </script>
 
 
@@ -137,7 +134,6 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                 // Spremi košaricu u localStorage
                 localStorage.setItem('cart', JSON.stringify(cart));
                 
-                // Ažuriraj modal
                 updateCart();
             });
 
@@ -197,13 +193,11 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                         cart.splice(cartItemIndex, 1); // Ukloni proizvod iz košarice
                     }
 
-                    updateCart(); // Ažuriraj prikaz košarice
+                    updateCart(); 
                     localStorage.setItem('cart', JSON.stringify(cart)); // Spremi ažuriranu košaricu u localStorage
                 }
             });
 
-
-            // Ažuriraj košaricu prilikom učitavanja stranice
             updateCart();
         });
         </script>

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styler.css">
 </head>
 <body>
 
 <?php
-// Include the database connection and base files
-include 'db.php'; // Ensure this path is correct
+
+include 'db.php'; 
 include 'base.php';
 
 // Get the category from the URL
@@ -81,7 +81,7 @@ $conn->close();
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
 <script>
-    // Hide success or error messages after 3 seconds
+    // Hide success or error messages 
     setTimeout(function() {
         var successMessage = document.getElementById('success-message');
         if (successMessage) successMessage.style.display = 'none';
@@ -114,7 +114,7 @@ $conn->close();
                 // Spremi košaricu u localStorage
                 localStorage.setItem('cart', JSON.stringify(cart));
                 
-                // Ažuriraj modal
+
                 updateCart();
             });
 
@@ -174,13 +174,11 @@ $conn->close();
                         cart.splice(cartItemIndex, 1); // Ukloni proizvod iz košarice
                     }
 
-                    updateCart(); // Ažuriraj prikaz košarice
+                    updateCart();
                     localStorage.setItem('cart', JSON.stringify(cart)); // Spremi ažuriranu košaricu u localStorage
                 }
             });
 
-
-            // Ažuriraj košaricu prilikom učitavanja stranice
             updateCart();
         });
         </script>

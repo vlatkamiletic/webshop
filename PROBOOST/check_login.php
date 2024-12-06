@@ -1,11 +1,10 @@
 <?php
-session_start(); // Start the session
+session_start();
 
-// Include your database connection file
-include 'db.php'; // Adjust the path as necessary
+include 'db.php'; 
 
 // Check if the user is logged in
-$response = array('loggedIn' => isset($_SESSION['user_id'])); // Assuming user_id is stored in session
+$response = array('loggedIn' => isset($_SESSION['user_id'])); 
 
 header('Content-Type: application/json');
 echo json_encode($response);

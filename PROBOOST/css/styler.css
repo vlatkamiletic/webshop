@@ -1,13 +1,13 @@
 
 main {
-    background-color: #192841; /* Svijetla pozadina za cijeli sadržaj */
-    color: #333; /* Tamna boja teksta za bolju čitljivost */
+    background-color: #192841; 
+    color: #333; 
     padding: 30px;
 }
 
 /* Pozadina za header (dobrodošli u naš webshop) */
 header {
-    background: linear-gradient(135deg, #192630, #4a7388); /* Tamniji gradient za header */
+    background: linear-gradient(135deg, #192630, #4a7388); 
     padding: 30px;
     text-align: center;
     color: #ffffff;
@@ -40,6 +40,14 @@ header h1 {
     font-weight: bold;
 }
 
+.filter-price {
+    width: 45%;
+}
+
+.filter-vegan {
+    display: flex;
+    align-items: center;
+}
 
 /* Fiksiranje broja kolona u gridu */
 .products-container {
@@ -49,35 +57,25 @@ header h1 {
     margin: 20px;
 }
 
-/* Za male ekrane, također fiksirajte broj kolona */
-@media (max-width: 768px) {
-    .products-container {
-        grid-template-columns: repeat(1, 1fr); /* 1 kolona za mobitele */
-    }
-}
-
 
 /* Stilizacija proizvoda unutar grid-a */
 .product {
-    border: 1px solid #ccc; /* Bijeli okvir oko proizvoda */
-    padding: 20px;  /* Povećajte padding kako bi se sadržaj bolje rasporedio */
+    border: 1px solid #ccc; 
+    padding: 20px;
     text-align: center;
-    background-color: white; /* Dodaj bijelu pozadinu */
-    box-sizing: border-box; /* Uključuje padding u ukupnu širinu */
-    transition: all 0.3s ease; /* Glatka tranzicija za promjene */
+    background-color: white; 
+    box-sizing: border-box; 
+    transition: all 0.3s ease;
 
 }
-
 
 /* Stil za slike proizvoda */
 .product img {
-    width: 50%;
-    height: 200px;
+    max-width: 50%;
+    max-height: 200px;
     object-fit: cover;
+    
 }
-
-
-
 
 /* Hover efekat na proizvode */
 .product:hover {
@@ -86,7 +84,6 @@ header h1 {
 }
 
 
-/* Naslovi i tekst unutar proizvoda */
 .product h3, .product p, .product h4 {
     color: #2C3E50;
     margin: 12px 0;
@@ -105,8 +102,12 @@ header h1 {
     }
 }
 
+@media (max-width: 768px) {
+    .products-container {
+        grid-template-columns: repeat(1, 1fr); 
+    }
+}
 
-/* Stilizacija za input spinner */
 .quantity-selector {
     display: flex;
     align-items: center;
@@ -120,15 +121,14 @@ header h1 {
     justify-content: center;
 }
 
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #192841; /* Tamna plava pozadina */
-    color: white;  /* Bijeli tekst za bolji kontrast */
+    background-color: #192841; 
+    color: white;  
+    margin: 0;
+    padding: 0;
+    
 }
-
-
-
 
 .price {
     font-size: 1.2em;
@@ -158,25 +158,6 @@ body {
     background-color: #0056b3;
 }
 
-
-/* Basic styling for the webshop */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-
-.filter-price {
-    width: 45%;
-}
-
-.filter-vegan {
-    display: flex;
-    align-items: center;
-}
-
 .password-toggle {
     background: transparent;
     border: none;
@@ -192,10 +173,10 @@ body {
 }
 
 .modal-content {
-    background-color: #ffffff; /* Bijela pozadina za modal */
-    color: #333; /* Tamni tekst za bolju čitljivost */
+    background-color: #ffffff; 
+    color: #333;
     border-radius: 8px;
-    border: 1px solid #ccc; /* Sivi okvir oko modala */
+    border: 1px solid #ccc; 
 }
 
 .btn-primary {
@@ -209,62 +190,61 @@ body {
 
 /* Osnovni stil za navigacijski bar */
 .navbar {
-    background-color: #343a40; /* Boja pozadine navbar-a (tamno siva) */
+    background-color: #343a40; 
 }
 
 .navbar .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ffffff; /* Boja teksta na logo */
+    color: #ffffff; 
 }
 
 /* Osigurava da stavke u navbaru budu poravnate prema lijevoj strani */
 .navbar-nav {
-    display: flex; /* Koristi flexbox za poravnavanje stavki */
-    justify-content: flex-start; /* Stavke će biti poravnate lijevo */
-    align-items: center; /* Poravnava stavke vertikalno u sredinu */
-    margin: 0; /* Uklanja margine oko nav item-a */
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+    margin: 0; 
 }
 
 /* Osigurava da razmak između stavki u navbaru bude ujednačen */
 .nav-item {
-    margin-right: 20px; /* Razmak između stavki */
+    margin-right: 20px; 
 }
 
 /* Podesite boje i hover efekte za linkove */
 .nav-link {
-    color: #ffffff; /* Boja teksta */
-    font-size: 1rem; /* Veličina fonta */
-    padding: 8px 15px; /* Unutarnji razmak za bolji izgled */
+    color: #ffffff;
+    font-size: 1rem; 
+    padding: 8px 15px; 
 }
 
 .nav-link:hover {
-    color: #f8f9fa; /* Promjena boje na hover */
-    background-color: #495057; /* Pozadina pri hoveru */
+    color: #ffffff;
+    background-color: #495057; 
 }
 
-/* Razmak između lijevog i desnog dijela navigacije */
 .navbar-nav.me-auto {
     margin-right: auto; /* Lijeva navigacija ide na lijevu stranu */
 }
 
-/* Desni gumbi će biti poravnati desno */
+
 .navbar-nav.ms-auto {
     margin-left: auto; /* Desna navigacija ide na desnu stranu */
 }
 
-/* Pobrinite se da širina container-a bude 100% */
+
 .navbar .container {
     width: 100%;
 }
 
-/* Stiliziranje gumba u navigaciji */
+
 .navbar-toggler {
-    border: none; /* Uklanja okvir oko gumba za toggliranje */
+    border: none; 
 }
 
 .navbar-toggler-icon {
-    background-color: #ffffff; /* Bijela ikona za hamburger meni */
+    background-color: #ffffff; 
 }
 
 

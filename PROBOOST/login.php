@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include 'db.php'; // Povezivanje na bazu
+    include 'db.php'; 
 
     // Dohvati podatke iz forme
     $email = trim($_POST['email']);
